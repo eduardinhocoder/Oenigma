@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enigma</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+            background: linear-gradient(135deg, #fff, #f9f9f9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            height: 250px;
+            width: 350px;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .yes-button {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .yes-button:hover {
+            background-color: #45a049;
+        }
+
+        .no-button {
+            background-color: #f44336;
+            color: white;
+            position: relative;
+        }
+
+        .no-button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Você aceita participar de um enigma?</h1>
+        <div class="buttons">
+            <button class="yes-button" onclick="goToEnigma()">Sim</button>
+            <button class="no-button" onclick="moveButton()">Não</button>
+        </div>
+    </div>
+
+    <script>
+        let buttonMoved = false;
+
+        function moveButton() {
+            const noButton = document.querySelector('.no-button');
+
+            if (!buttonMoved) {
+                // Move o botão "Não" verticalmente ao ser clicado
+                const container = document.querySelector('.container');
+                const containerRect = container.getBoundingClientRect();
+                const buttonHeight = noButton.offsetHeight;
+                const maxTop = containerRect.height - buttonHeight;
+                const newTop = Math.random() * maxTop;
+                noButton.style.position = 'absolute';
+                noButton.style.left = '50%';
+                noButton.style.transform = 'translateX(-50%)';
+                noButton.style.top = newTop + 'px';
+                buttonMoved = true;
+            } else {
+                // Move o botão "Não" verticalmente
+                const container = document.querySelector('.container');
+                const containerRect = container.getBoundingClientRect();
+                const buttonHeight = noButton.offsetHeight;
+                const maxTop = containerRect.height - buttonHeight;
+                const newTop = Math.random() * maxTop;
+                noButton.style.top = newTop + 'px';
+            }
+        }
+
+        function goToEnigma() {
+            window.location.href = 'enigma.html';
+        }
+    </script>
+</body>
+</html>
